@@ -4,7 +4,8 @@ class Node:
 	index = 0
 	label = 0
 	is_bias_unit = False
-
+	layer_number = 0
+     
 	def setIndex(self, index):
 		self.index = index
 
@@ -22,3 +23,9 @@ class Node:
 
 	def getIsBiasUnit(self):
 		return self.is_bias_unit
+
+	def setLayerNumber(self, layer):
+		self.layer_number = layer
+
+	def getLayerNumber(self):
+		return self.layer_number
