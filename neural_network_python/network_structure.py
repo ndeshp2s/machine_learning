@@ -4,53 +4,56 @@ from node import Node
 
 class NetworkStructure:
 
-    def __init__(self, inputs, hidden_layers, outputs):
-        self.inputs = inputs
-        self.hidden_layers = hidden_layers
-        self.outputs = outputs
+    def __init__(self):
         self.nodes = []
         self.node_index = 0
         
-        print ("Creating the Network")
+    def createNetwork(self, inputs, hidden_layers, outputs):   
         
-        #-----------------------#
-        #----- input layer -----#
+        self.nodes = []
+        self.node_index = 0
+        
+        print ("Creating the Network Structure")
+        
+        #---------------------------------#
+        #---------- input layer ----------#
         
         # bias unit
         self.createNode(True)
         print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
         
         #inputs
-        for i in range(self.inputs):
+        for i in range(inputs):
             self.createNode(False, "x"+str(i+1)) 
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
         print("\n")    
                 
-        #-------------------------#
-        #----- hidden layers -----#
+        #-----------------------------------#
+        #---------- hidden layers ----------#
         
         #nodes
-        for i in range(len(self.hidden_layers)):
+        for i in range(len(hidden_layers)):
             
             self.createNode(True)
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
-            for j in range(self.hidden_layers[i]): 
+            for j in range(hidden_layers[i]): 
                 self.createNode(False, "h"+str(i+1)+str(j+1))  
                 print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
-            print("\n")
-        #print("\n")    
+            print("\n")    
         
-        #-------------------------#
-        #----- output layer -----#
+        #-----------------------------------#
+        #---------- output layer -----------#
         
         #outputss
-        for o in range(self.outputs):
+        for o in range(outputs):
             self.createNode(False, "o"+str(o+1)) 
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
         print("\n") 
+        
+        return self.nodes
                         
         
                

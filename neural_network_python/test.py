@@ -11,5 +11,7 @@ if __name__ == "__main__":
     inputs = number_of_features
     hidden_layers = [2, 3]
     outputs = 1
+    
+    nn_network = NetworkStructure()
 
-    network = NetworkStructure(inputs, hidden_layers, outputs)	
+    nodes = nn_network.createNetwork(inputs, hidden_layers, outputs)	
