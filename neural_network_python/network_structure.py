@@ -19,12 +19,12 @@ class NetworkStructure:
         #---------- input layer ----------#
         
         # bias unit
-        self.createNode(True)
+        self.createNode(True, 0)
         print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
         
         #inputs
         for i in range(inputs):
-            self.createNode(False, "x"+str(i+1)) 
+            self.createNode(False, 0, "x"+ str(i+1)) 
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
         print("\n")    
@@ -35,11 +35,12 @@ class NetworkStructure:
         #nodes
         for i in range(len(hidden_layers)):
             
-            self.createNode(True)
+            self.createNode(True, i+1)
+            
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
             for j in range(hidden_layers[i]): 
-                self.createNode(False, "h"+str(i+1)+str(j+1))  
+                self.createNode(False, i+1, "h"+str(i+1)+str(j+1))  
                 print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             print("\n")    
         
@@ -48,7 +49,7 @@ class NetworkStructure:
         
         #outputss
         for o in range(outputs):
-            self.createNode(False, "o"+str(o+1)) 
+            self.createNode(False, len(hidden_layers) + 1, "o"+str(o+1)) 
             print(self.nodes[self.node_index-1].getLabel(), "\t", end='')
             
         print("\n") 
@@ -58,17 +59,19 @@ class NetworkStructure:
         
                
 
-    def createNode(self, bias, label = None):	
+    def createNode(self, bias, layer_number, label = None):	
         node = Node()
         
         if (bias == True):
             node.setLabel("+1")
             node.setIsBiasUnit(True)
-            node.setIndex(self.node_index)
+           
         else:
             node.setLabel(label)
             node.setIsBiasUnit(False)
-            node.setIndex(self.node_index)
+            
+        node.setIndex(self.node_index)
+        node.setLayerNumber(layer_number)
 
         self.nodes.append(node)
         self.node_index = self.node_index + 1
