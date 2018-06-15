@@ -12,11 +12,7 @@ class NetworkConnection:
         
     def createConnection(self, inputs, hidden_layers, outputs, nodes):
                 
-        total_layers = 1 + len(hidden_layers) + 1
-        
-
-        
-        
+        total_layers = 1 + len(hidden_layers) + 1        
     
         # iterate over all layers
         for i in range(total_layers-1):
@@ -42,6 +38,8 @@ class NetworkConnection:
                                self.weights.append(weight)
                            
                                print("Weight from " + str(nodes[j].getLabel()) + " to " + str(nodes[k].getLabel()) + " ---> " + str(weight.getValue()))
+
+        return self.weights
                                
 
     def generateRand(self, inputs):
